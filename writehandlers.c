@@ -160,7 +160,7 @@ char padd = ' ';
 UNUSED(is_negative);
 UNUSED(sze);
 
-if (precision == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0')
+if (prec == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0')
 return (0); /* printf(".0d", 0)  no char is printed */
 
 if (prec > 0 && prec < length)
