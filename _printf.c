@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 			prec = precision(format, &i, list);
 			sze = size(format, &i);
 			++i;
-			printed = handle_print(format, &i, list, buffer,
+			printed = handleprint(format, &i, list, buffer,
 				flg, wdth, prec, sze);
 			if (printed == -1)
 				return (-1);
