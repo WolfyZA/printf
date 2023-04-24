@@ -35,10 +35,10 @@ int _printf(const char *format, ...)
 			flg = flags(format, &i);
 			wdth = width(format, &i, list);
 			prec = precision(format, &i, list);
-			sze = get_size(format, &i);
+			sze = size(format, &i);
 			++i;
 			printed = handle_print(format, &i, list, buffer,
-				flags, width, precision, size);
+				flg, wdth, prec, sze);
 			if (printed == -1)
 				return (-1);
 			printed_chars += printed;
