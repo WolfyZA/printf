@@ -7,10 +7,10 @@
  *
  * Return: Precision
  */
-int get_size(const char *format, int *i)
+int size(const char *format, int *i)
 {
 	int curr_i = *i + 1;
-	int size = 0;
+	int sze = 0;
 
 	if (format[curr_i] == 'l')
 		size = S_LONG;
