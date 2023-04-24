@@ -112,19 +112,19 @@ if (wdth > length)
 for (i = 1; i < wdth - length + 1; i++)
 buffer[i] = padd;
 buffer[i] = '\0';
-if (flags & F_MINUS && padd == ' ')/* Asign extra char to left of buffer */
+if (flg & F_MINUS && padd == ' ')/* Asign extra char to left of buffer */
 {
 if (extra_c)
 buffer[--ind] = extra_c;
 return (write(1, &buffer[ind], length) + write(1, &buffer[1], i - 1));
 }
-else if (!(flags & F_MINUS) && padd == ' ')/* extra char to left of buff */
+else if (!(flg & F_MINUS) && padd == ' ')/* extra char to left of buff */
 {
 if (extra_c)
 buffer[--ind] = extra_c;
 return (write(1, &buffer[1], i - 1) + write(1, &buffer[ind], length));
 }
-else if (!(flags & F_MINUS) && padd == '0')/* extra char to left of padd */
+else if (!(flg & F_MINUS) && padd == '0')/* extra char to left of padd */
 {
 if (extra_c)
 buffer[--padd_start] = extra_c;
@@ -142,47 +142,47 @@ return (write(1, &buffer[ind], length));
 * @is_negative: Number indicating if the num is negative
 * @ind: Index at which the number starts in the buffer
 * @buffer: Array of chars
-* @flags: Flags specifiers
-* @width: Width specifier
-* @precision: Precision specifier
-* @size: Size specifier
+* @flg: Flags specifiers
+* @wdth: Width specifier
+* @prec: Precision specifier
+* @sze: Size specifier
 *
 * Return: Number of written chars.
 */
 int write_unsgnd(int is_negative, int ind,
 char buffer[],
-int flags, int width, int precision, int size)
+int flg, int wdth, int prec, int sze)
 {
 /* The number is stored at the bufer's right and starts at position i */
 int length = BUFF_SIZE - ind - 1, i = 0;
 char padd = ' ';
 
 UNUSED(is_negative);
-UNUSED(size);
+UNUSED(sze);
 
 if (precision == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0')
 return (0); /* printf(".0d", 0)  no char is printed */
 
-if (precision > 0 && precision < length)
+if (prec > 0 && prec < length)
 padd = ' ';
 
-while (precision > length)
+while (prec > length)
 {
 buffer[--ind] = '0';
 length++;
 }
 
-if ((flags & F_ZERO) && !(flags & F_MINUS))
+if ((flg & F_ZERO) && !(flg & F_MINUS))
 padd = '0';
 
-if (width > length)
+if (wdth > length)
 {
-for (i = 0; i < width - length; i++)
+for (i = 0; i < wdth - length; i++)
 buffer[i] = padd;
 
 buffer[i] = '\0';
 
-if (flags & F_MINUS) /* Asign extra char to left of buffer [buffer>padd]*/
+if (flg & F_MINUS) /* Asign extra char to left of buffer [buffer>padd]*/
 {
 return (write(1, &buffer[ind], length) + write(1, &buffer[0], i));
 }
@@ -200,8 +200,8 @@ return (write(1, &buffer[ind], length));
 * @buffer: Arrays of chars
 * @ind: Index at which the number starts in the buffer
 * @length: Length of number
-* @width: Width specifier
-* @flags: Flags specifier
+* @wdth: Width specifier
+* @flg: Flags specifier
 * @padd: Char representing the padding
 * @extra_c: Char representing extra char
 * @padd_start: Index at which padding should start
@@ -209,16 +209,16 @@ return (write(1, &buffer[ind], length));
 * Return: Number of written chars.
 */
 int write_pointer(char buffer[], int ind, int length,
-int width, int flags, char padd, char extra_c, int padd_start)
+int wdth, int flg, char padd, char extra_c, int padd_start)
 {
 int i;
 
-if (width > length)
+if (wdth > length)
 {
-for (i = 3; i < width - length + 3; i++)
+for (i = 3; i < wdth - length + 3; i++)
 buffer[i] = padd;
 buffer[i] = '\0';
-if (flags & F_MINUS && padd == ' ')/* Asign extra char to left of buffer */
+if (flg & F_MINUS && padd == ' ')/* Asign extra char to left of buffer */
 {
 buffer[--ind] = 'x';
 buffer[--ind] = '0';
@@ -226,7 +226,7 @@ if (extra_c)
 buffer[--ind] = extra_c;
 return (write(1, &buffer[ind], length) + write(1, &buffer[3], i - 3));
 }
-else if (!(flags & F_MINUS) && padd == ' ')/* extra char to left of buffer */
+else if (!(flg & F_MINUS) && padd == ' ')/* extra char to left of buffer */
 {
 buffer[--ind] = 'x';
 buffer[--ind] = '0';
@@ -234,7 +234,7 @@ if (extra_c)
 buffer[--ind] = extra_c;
 return (write(1, &buffer[3], i - 3) + write(1, &buffer[ind], length));
 }
-else if (!(flags & F_MINUS) && padd == '0')/* extra char to left of padd */
+else if (!(flg & F_MINUS) && padd == '0')/* extra char to left of padd */
 {
 if (extra_c)
 buffer[--padd_start] = extra_c;
