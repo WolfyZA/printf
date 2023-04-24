@@ -33,7 +33,7 @@ buffer[BUFF_SIZE - 1] = '\0';
 for (i = 0; i < wdth - 1; i++)
 buffer[BUFF_SIZE - i - 2] = padd;
 
-if (flags & F_MINUS)
+if (flg & F_MINUS)
 return (write(1, &buffer[0], 1) +
 write(1, &buffer[BUFF_SIZE - i - 1], wdth - 1));
 else
@@ -65,7 +65,7 @@ char padd = ' ', extra_ch = 0;
 
 UNUSED(sze);
 
-if ((flags & F_ZERO) && !(flg & F_MINUS))
+if ((flg & F_ZERO) && !(flg & F_MINUS))
 padd = '0';
 if (is_negative)
 extra_ch = '-';
