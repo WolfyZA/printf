@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * get_size - Calculates the size to print the argument
+ * size - Calculates the size to print the argument
  * @format: Formatted string to print the arguments
  * @i: List of arguments to be printed
  *
