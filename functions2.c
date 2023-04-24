@@ -27,7 +27,7 @@ int print_pointer(va_list types, char buffer[],
 		return (write(1, "(nil)", 5));
 
 	buffer[BUFF_SIZE - 1] = '\0';
-	UNUSED(precision);
+	UNUSED(prec);
 
 	num_addrs = (unsigned long)addrs;
 
