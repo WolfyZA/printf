@@ -17,13 +17,13 @@ int width(const char *format, int *i, va_list list)
 	{
 		if (is_digit(format[curr_i]))
 		{
-			width *= 10;
-			width += format[curr_i] - '0';
+			wdth *= 10;
+			wdth += format[curr_i] - '0';
 		}
 		else if (format[curr_i] == '*')
 		{
 			curr_i++;
-			width = va_arg(list, int);
+			wdth = va_arg(list, int);
 			break;
 		}
 		else
@@ -32,5 +32,5 @@ int width(const char *format, int *i, va_list list)
 
 	*i = curr_i - 1;
 
-	return (width);
+	return (wdth);
 }

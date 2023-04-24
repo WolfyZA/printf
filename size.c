@@ -13,14 +13,14 @@ int size(const char *format, int *i)
 	int sze = 0;
 
 	if (format[curr_i] == 'l')
-		size = S_LONG;
+		sze = S_LONG;
 	else if (format[curr_i] == 'h')
-		size = S_SHORT;
+		sze = S_SHORT;
 
-	if (size == 0)
+	if (sze == 0)
 		*i = curr_i - 1;
 	else
 		*i = curr_i;
 
-	return (size);
+	return (sze);
 }
